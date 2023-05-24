@@ -1,7 +1,11 @@
-import "./globals.css";
-import { Inter } from "next/font/google";
+import { Lato } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import { ToastContext } from "./context/ToastContext";
+import { AuthContext } from "./context/AuthContext";
+
+import "./globals.css";
+
+const lato = Lato({ subsets: ["latin"], weight: ["100", "300", "400", "700"] });
 
 export const metadata = {
   title: "Realtime chat app",
@@ -15,7 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={lato.className}>
+        <AuthContext>
+          <ToastContext />
+          {children}
+        </AuthContext>
+      </body>
     </html>
   );
 }
