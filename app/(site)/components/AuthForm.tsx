@@ -49,7 +49,7 @@ export const AuthForm = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
     if (variant === "REGISTER") {
-      axios
+      return axios
         .post("/api/register", data)
         .then(() => signIn("credentials", data))
         .catch(() => {
@@ -59,7 +59,7 @@ export const AuthForm = () => {
     }
 
     if (variant === "LOGIN") {
-      signIn("credentials", {
+      return signIn("credentials", {
         ...data,
         redirect: false,
       })
@@ -78,9 +78,14 @@ export const AuthForm = () => {
   const socialAction = (action: string) => {
     setIsLoading(true);
 
-    signIn(action, {
-      redirect: false,
-    })
+    signIn(
+      action,
+      {
+        callbackUrl: "/users",
+        redirect: false,
+      },
+      { prompt: "login" }
+    )
       .then((cb) => {
         if (cb?.error) {
           return toast.error("Invalid credentials");
