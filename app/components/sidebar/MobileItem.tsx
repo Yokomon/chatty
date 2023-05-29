@@ -6,22 +6,18 @@ import { IconType } from "react-icons/lib";
 
 interface MobileItemProps {
   href: string;
-  onClick: (() => Promise<undefined>) | undefined;
   icon: IconType;
   active: boolean | undefined;
 }
 
 export const MobileItem: React.FC<MobileItemProps> = ({
   href,
-  onClick,
   icon: Icon,
   active,
 }) => {
-  const handleClick = () => onClick && onClick();
   return (
     <Link
       href={href}
-      onClick={handleClick}
       className={clsx({
         ["group flex gap-x-3 text-sm leading-6 border-x-[.5px] font-semibold w-full justify-center p-3 text-gray-500"]:
           true,
