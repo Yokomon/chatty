@@ -30,8 +30,8 @@ export const Button: React.FC<ButtonProps> = ({
           true,
         ["opacity-50 cursor-default"]: disabled,
         ["w-full"]: fullWidth,
-        ["text-gray-900"]: secondary,
-        ["bg-rose-500 hover::bg-rose-600 focus-visible:outline-rose-600"]:
+        ["!text-gray-900 !bg-white hover:!bg-neutral-50"]: secondary,
+        ["!bg-rose-500 hover:bg-rose-600 !focus-visible:outline-rose-600"]:
           danger,
       })}
     >
